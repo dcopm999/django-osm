@@ -2,6 +2,8 @@
 *#
 *.py[cod]
 __pycache__
+db.sqlite3
+static
 
 # C extensions
 *.so
@@ -47,3 +49,6 @@ output/*/index.html
 
 # Sphinx
 docs/_build
+
+# Celery
+celerybeat-schedule.db

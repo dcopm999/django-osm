@@ -4,7 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Building(models.Model):
-    osm_id = models.CharField(max_length=10, unique=True, db_index=True, verbose_name=_("OSM ID"))
+    osm_id = models.CharField(
+        max_length=10, unique=True, db_index=True, verbose_name=_("OSM ID")
+    )
     code = models.IntegerField(verbose_name=_("Code"))
     fclass = models.CharField(max_length=28, verbose_name=_("Object class"))
 
@@ -14,7 +16,6 @@ class Building(models.Model):
     type = models.CharField(
         max_length=20, null=True, blank=True, verbose_name=_("Object Type")
     )
-    #geom = models.MultiPolygonField()
     geom = models.PolygonField()
 
     @staticmethod
@@ -26,12 +27,12 @@ class Building(models.Model):
             "name": "name",
             "type": "type",
             "geom": "POLYGON",
-            #"geom": "MULTIPOLYGON",
         }
 
     class Meta:
         verbose_name = _("Building")
         verbose_name_plural = _("Buildings")
+        app_label = "osm"
 
 
 class Landuse(models.Model):
@@ -58,6 +59,7 @@ class Landuse(models.Model):
     class Meta:
         verbose_name = _("Landuse")
         verbose_name_plural = _("Landuses")
+        app_label = "osm"
 
 
 class Natural(models.Model):
@@ -69,7 +71,7 @@ class Natural(models.Model):
     name = models.CharField(
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
-    #geom = models.MultiPointField()
+    # geom = models.MultiPointField()
     geom = models.PointField()
 
     @staticmethod
@@ -80,12 +82,13 @@ class Natural(models.Model):
             "fclass": "fclass",
             "name": "name",
             "geom": "POINT",
-            #"geom": "MULTIPOINT",
+            # "geom": "MULTIPOINT",
         }
 
     class Meta:
         verbose_name = _("Natural")
         verbose_name_plural = _("Naturals")
+        app_label = "osm"
 
 
 class NaturalA(models.Model):
@@ -112,6 +115,7 @@ class NaturalA(models.Model):
     class Meta:
         verbose_name = _("Natural A")
         verbose_name_plural = _("Naturals A")
+        app_label = "osm"
 
 
 class Place(models.Model):
@@ -140,6 +144,7 @@ class Place(models.Model):
     class Meta:
         verbose_name = _("Place")
         verbose_name_plural = _("Places")
+        app_label = "osm"
 
 
 class PlaceA(models.Model):
@@ -168,6 +173,7 @@ class PlaceA(models.Model):
     class Meta:
         verbose_name = _("Place A")
         verbose_name_plural = _("Places A")
+        app_label = "osm"
 
 
 class Pofw(models.Model):
@@ -194,6 +200,7 @@ class Pofw(models.Model):
     class Meta:
         verbose_name = _("Pofw")
         verbose_name_plural = _("Pofws")
+        app_label = "osm"
 
 
 class PofwA(models.Model):
@@ -220,6 +227,7 @@ class PofwA(models.Model):
     class Meta:
         verbose_name = _("Pofw A")
         verbose_name_plural = _("Pofws A")
+        app_label = "osm"
 
 
 class Pois(models.Model):
@@ -246,6 +254,7 @@ class Pois(models.Model):
     class Meta:
         verbose_name = _("Pois")
         verbose_name_plural = _("Poises")
+        app_label = "osm"
 
 
 class PoisA(models.Model):
@@ -272,6 +281,7 @@ class PoisA(models.Model):
     class Meta:
         verbose_name = _("Pois A")
         verbose_name_plural = _("Poises A")
+        app_label = "osm"
 
 
 class RailWay(models.Model):
@@ -304,6 +314,7 @@ class RailWay(models.Model):
     class Meta:
         verbose_name = _("RailWay")
         verbose_name_plural = _("RailWays")
+        app_label = "osm"
 
 
 class Road(models.Model):
@@ -342,6 +353,7 @@ class Road(models.Model):
     class Meta:
         verbose_name = _("Road")
         verbose_name_plural = _("Roads")
+        app_label = "osm"
 
 
 class Traffic(models.Model):
@@ -368,6 +380,7 @@ class Traffic(models.Model):
     class Meta:
         verbose_name = _("Traffic")
         verbose_name_plural = _("Traffics")
+        app_label = "osm"
 
 
 class TrafficA(models.Model):
@@ -394,6 +407,7 @@ class TrafficA(models.Model):
     class Meta:
         verbose_name = _("Traffic A")
         verbose_name_plural = _("Traffics A")
+        app_label = "osm"
 
 
 class Transport(models.Model):
@@ -420,6 +434,7 @@ class Transport(models.Model):
     class Meta:
         verbose_name = _("Transport")
         verbose_name_plural = _("Transports")
+        app_label = "osm"
 
 
 class TransportA(models.Model):
@@ -446,6 +461,7 @@ class TransportA(models.Model):
     class Meta:
         verbose_name = _("Transport A")
         verbose_name_plural = _("Transports A")
+        app_label = "osm"
 
 
 class Water(models.Model):
@@ -472,6 +488,7 @@ class Water(models.Model):
     class Meta:
         verbose_name = _("Water")
         verbose_name_plural = _("Waters")
+        app_label = "osm"
 
 
 class WaterWay(models.Model):
@@ -496,3 +513,7 @@ class WaterWay(models.Model):
             "geom": "MULTILINESTRING",
         }
 
+    class Meta:
+        verbose_name = _("Water Way")
+        verbose_name_plural = _("WaterWays")
+        app_label = "osm"

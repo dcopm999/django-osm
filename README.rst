@@ -47,11 +47,18 @@ Add it to your `INSTALLED_APPS`:
 	},
     }
 
+    DATABASE_ROUTERS = [
+        ...
+        'osm.route_db.Default'
+    ]
+
     DATABASES = {
-        'default': {
-	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-	'NAME': 'geodjango',
-	'USER': 'geo',
+        ...
+        'osm': {
+	    'ENGINE': 'django.contrib.gis.db.backends.postgis',
+	    'HOST': 'localhost',
+	    'NAME': 'geodjango',
+	    'USER': 'geo',
 	},
     }
 
@@ -60,12 +67,9 @@ Add django-osm's URL patterns:
 
 .. code-block:: python
 
-    from osm import urls as osm_urls
-
-
     urlpatterns = [
         ...
-        url(r'^', include(osm_urls)),
+        path('osm/', include('osm.urls', namespace='osm')),
         ...
     ]
 
