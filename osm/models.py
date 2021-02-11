@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.gis.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class Building(models.Model):
