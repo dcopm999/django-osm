@@ -555,6 +555,7 @@ class WaterWay(models.Model):
     def __str__(self):
         return self.osm_id
 
+    @staticmethod
     def mapping():
         return {
             "osm_id": "osm_id",
