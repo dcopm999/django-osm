@@ -16,7 +16,10 @@ class Building(models.Model):
     type = models.CharField(
         max_length=20, null=True, blank=True, verbose_name=_("Object Type")
     )
-    geom = models.PolygonField()
+    geom = models.MultiPolygonField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -26,7 +29,7 @@ class Building(models.Model):
             "fclass": "fclass",
             "name": "name",
             "type": "type",
-            "geom": "POLYGON",
+            "geom": "MULTIPOLYGON",
         }
 
     class Meta:
@@ -45,6 +48,9 @@ class Landuse(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -71,8 +77,10 @@ class Natural(models.Model):
     name = models.CharField(
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
-    # geom = models.MultiPointField()
-    geom = models.PointField()
+    geom = models.MultiPointField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -81,8 +89,7 @@ class Natural(models.Model):
             "code": "code",
             "fclass": "fclass",
             "name": "name",
-            "geom": "POINT",
-            # "geom": "MULTIPOINT",
+            "geom": "MULTIPOINT",
         }
 
     class Meta:
@@ -101,6 +108,9 @@ class NaturalA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -129,6 +139,9 @@ class Place(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPointField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -159,6 +172,9 @@ class PlaceA(models.Model):
     )
     geom = models.MultiPolygonField()
 
+    def __str__(self):
+        return self.osm_id
+
     @staticmethod
     def mapping():
         return {
@@ -187,6 +203,9 @@ class Pofw(models.Model):
     )
     geom = models.MultiPointField()
 
+    def __str__(self):
+        return self.osm_id
+
     @staticmethod
     def mapping():
         return {
@@ -213,6 +232,9 @@ class PofwA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -241,6 +263,9 @@ class Pois(models.Model):
     )
     geom = models.PointField()
 
+    def __str__(self):
+        return self.osm_id
+
     @staticmethod
     def mapping():
         return {
@@ -267,6 +292,9 @@ class PoisA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -297,6 +325,9 @@ class RailWay(models.Model):
     bridge = models.CharField(max_length=1, verbose_name=_("Bridge"))
     tunnel = models.CharField(max_length=1, verbose_name=_("Tunnel"))
     geom = models.MultiLineStringField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -334,6 +365,9 @@ class Road(models.Model):
     tunnel = models.CharField(max_length=1, verbose_name=_("Tunnel"))
     geom = models.MultiLineStringField()
 
+    def __str__(self):
+        return self.osm_id
+
     @staticmethod
     def mapping():
         return {
@@ -367,6 +401,9 @@ class Traffic(models.Model):
     )
     geom = models.MultiPointField()
 
+    def __str__(self):
+        return self.osm_id
+
     @staticmethod
     def mapping():
         return {
@@ -393,6 +430,9 @@ class TrafficA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiPolygonField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -421,6 +461,9 @@ class Transport(models.Model):
     )
     geom = models.MultiPointField()
 
+    def __str__(self):
+        return self.osm_id
+
     @staticmethod
     def mapping():
         return {
@@ -447,6 +490,9 @@ class TransportA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiPolygonField()
+
+    def __str__(self):
+        return self.osm_id
 
     @staticmethod
     def mapping():
@@ -475,6 +521,9 @@ class Water(models.Model):
     )
     geom = models.MultiPolygonField()
 
+    def __str__(self):
+        return self.osm_id
+
     @staticmethod
     def mapping():
         return {
@@ -502,6 +551,9 @@ class WaterWay(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiLineStringField()
+
+    def __str__(self):
+        return self.osm_id
 
     def mapping():
         return {

@@ -59,6 +59,7 @@ Add it to your `INSTALLED_APPS`:
 	    'HOST': 'localhost',
 	    'NAME': 'geodjango',
 	    'USER': 'geo',
+	    'PASSWORD': 'geo',
 	},
     }
 
@@ -72,6 +73,22 @@ Add django-osm's URL patterns:
         path('osm/', include('osm.urls', namespace='osm')),
         ...
     ]
+
+
+Add DRF settings:
+
+.. code-block:: python
+
+    REST_FRAMEWORK = {
+	"DEFAULT_AUTHENTICATION_CLASSES": (
+	    "rest_framework.authentication.SessionAuthentication",
+	    "rest_framework.authentication.TokenAuthentication",
+	),
+	"DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+	'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+	'PAGE_SIZE': 25
+   }
+
 
 Features
 --------

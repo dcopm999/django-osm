@@ -5,5 +5,5 @@ from django.urls import include, path
 app_name = "tashkent"
 
 urlpatterns = [
-    path("api", include("osm.urls_api")),
+    path("api/", include("osm.urls_api")),
 ]
