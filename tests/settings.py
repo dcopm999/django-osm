@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django_elasticsearch_dsl",
     "django_elasticsearch_dsl_drf",
     "osm",
-    "osm.test_utils.test_app"
     # if your app has other dependencies that need to be added to the site
     # they should be added here
 ]
