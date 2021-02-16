@@ -62,6 +62,30 @@ Add it to your `INSTALLED_APPS`:
 	    'PASSWORD': 'geo',
 	},
     }
+    OSM_REPLICS = ['osm']
+
+
+If there is OSM database replication, then add the connection parameters to us in the list of databases:
+
+.. code-block:: python
+
+       DATABASES = {
+           ...
+	   'osm_replica1': {
+	       'ENGINE': 'django.contrib.gis.db.backends.postgis',
+	       'HOST': 'localhost',
+	       'NAME': 'geodjango',
+	       'USER': 'geo',
+	       'PASSWORD': 'geo',
+	       },
+
+       }
+
+And complete the list of replicas OSM_REPLICS:
+
+.. code-block:: python
+
+   OSM_REPLICS = ['osm', 'osm_replica1']
 
 
 Add django-osm's URL patterns:

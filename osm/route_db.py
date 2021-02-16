@@ -1,4 +1,7 @@
 """ Route docstrings go here. """
+import random
+
+from django.conf import settings
 
 
 class Default:
@@ -11,7 +14,7 @@ class Default:
     def db_for_read(self, model, **hints):
         """Suggest the database that should be used for read operations for objects of type model."""
         if model._meta.app_label in ["osm"]:
-            return "osm"
+            return random.choice(settings.OSM_REPLICS)
         return None
 
     def db_for_write(self, model, **hints):

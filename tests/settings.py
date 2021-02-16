@@ -85,15 +85,9 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     },
-    "osm": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "osm",
-        "HOST": "localhost",
-        "USER": "master",
-        "PASSWORD": "master",
-    },
+    "osm": env.db("OSM_DATABASE_URL", default="postgis://master:master@localhost/osm"),
 }
-
+OSM_REPLICS = ["osm"]
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
