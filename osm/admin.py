@@ -4,9 +4,17 @@ from django.contrib.gis import admin
 from osm import models
 
 
+@admin.register(models.World)
+class WorldAdmin(admin.OSMGeoAdmin):
+    list_display = ["name", "fips", "iso2", "iso3", "un", "area", "pop2005"]
+    search_fields = ["name"]
+
+
 @admin.register(models.Building)
 class BuildingAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass"]
+    list_filter = ["fclass"]
+    search_fields = ["osm_id"]
 
 
 @admin.register(models.Landuse)
@@ -27,11 +35,15 @@ class NaturalA_Admin(admin.OSMGeoAdmin):
 @admin.register(models.Place)
 class PlaceAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass"]
+    search_fields = ["name"]
+    list_filter = ["fclass"]
 
 
 @admin.register(models.PlaceA)
 class PlaceA_Admin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass"]
+    search_fields = ["name"]
+    list_filter = ["fclass"]
 
 
 @admin.register(models.Pofw)

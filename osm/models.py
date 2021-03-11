@@ -3,6 +3,47 @@ from django.contrib.gis.db import models
 from django.utils.translation import gettext_lazy as _
 
 
+class World(models.Model):
+    fips = models.CharField(max_length=2, blank=True, null=True, verbose_name=_("Fips"))
+    iso2 = models.CharField(max_length=2, verbose_name=_("iso2"))
+    iso3 = models.CharField(max_length=3, verbose_name=_("iso3"))
+    un = models.IntegerField(verbose_name=_("UN"))
+    name = models.CharField(
+        max_length=50, unique=True, db_index=True, verbose_name=_("Name")
+    )
+    area = models.IntegerField(verbose_name=_("Area"))
+    pop2005 = models.BigIntegerField(verbose_name=_("Pop 2005"))
+    region = models.IntegerField(verbose_name=_("Region"))
+    subregion = models.IntegerField(verbose_name=_("Subregion"))
+    lon = models.FloatField(verbose_name=_("Lon"))
+    lat = models.FloatField(verbose_name=_("Lat"))
+    geom = models.MultiPolygonField(verbose_name=_("Geom"))
+
+    @staticmethod
+    def mapping():
+        return {
+            "fips": "FIPS",
+            "iso2": "ISO2",
+            "iso3": "ISO3",
+            "un": "UN",
+            "name": "NAME",
+            "area": "AREA",
+            "pop2005": "POP2005",
+            "region": "REGION",
+            "subregion": "SUBREGION",
+            "lon": "LON",
+            "lat": "LAT",
+            "geom": "MULTIPOLYGON",
+        }
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("World")
+        verbose_name_plural = _("World")
+
+
 class Building(models.Model):
     osm_id = models.CharField(
         max_length=10, unique=True, db_index=True, verbose_name=_("OSM ID")
