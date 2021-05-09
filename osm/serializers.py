@@ -5,18 +5,18 @@ from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from osm import documents, models
 
 
+class WorldSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        model = models.World
+        geo_field = "geom"
+        fields = "__all__"
+
+
 class BuildingSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Building
         geo_field = "geom"
-        fields = (
-            "id",
-            "osm_id",
-            "code",
-            "fclass",
-            "name",
-            "type",
-        )
+        fields = "__all__"
 
 
 class LanduseSerializer(GeoFeatureModelSerializer):
@@ -145,14 +145,7 @@ class NaturalDocumentSerializer(DocumentSerializer):
         """Meta options."""
 
         document = documents.NaturalDocument
-        fields = (
-            "id",
-            "osm_id",
-            "code",
-            "fclass",
-            "type" "name",
-            "geom",
-        )
+        fields = "__all__"
 
 
 class PoisDocumentSerializer(DocumentSerializer):
@@ -162,11 +155,4 @@ class PoisDocumentSerializer(DocumentSerializer):
         """Meta options."""
 
         document = documents.PoisDocument
-        fields = [
-            "id",
-            "osm_id",
-            "code",
-            "fclass",
-            "type" "name",
-            "geom",
-        ]
+        fields = "__all__"

@@ -9,6 +9,7 @@ if settings.DEBUG:
 else:
     router = SimpleRouter()
 
+router.register("world", views_api.WorldViewSet, basename="world")
 router.register("building", views_api.BuildingViewSet, basename="building")
 router.register("landuse", views_api.LanduseViewSet, basename="landuse")
 router.register("natural", views_api.NaturalViewSet, basename="natural")
@@ -28,13 +29,11 @@ router.register("transport_a", views_api.TransportAViewSet, basename="transport_
 router.register("water", views_api.WaterViewSet, basename="water")
 router.register("waterway", views_api.WaterWayViewSet, basename="waterway")
 
+router.register("search/pois", views_api.PoisDocumentViewSet, basename="pois-search")
 router.register(
-    "natural/search", views_api.NaturalDocumentViewSet, basename="natural-search"
+    "search/natural", views_api.NaturalDocumentViewSet, basename="natural-search"
 )
-router.register(
-    "natural_a/search", views_api.NaturalADocumentViewSet, basename="natural_a-search"
-)
-router.register("pois/search", views_api.PoisDocumentViewSet, basename="pois-search")
+
 
 app_name = "osm"
 urlpatterns = router.urls

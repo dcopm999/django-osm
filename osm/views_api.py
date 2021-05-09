@@ -1,9 +1,19 @@
 from django_elasticsearch_dsl_drf import constants, filter_backends
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework_gis.pagination import GeoJsonPagination
 
 from osm import documents, models, serializers
+from osm.filters import ContainsPointFilter
+
+
+class WorldViewSet(viewsets.ModelViewSet):
+    queryset = models.World.objects.all()
+    serializer_class = serializers.WorldSerializer
+    pagination_class = GeoJsonPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ContainsPointFilter
 
 
 class BuildingViewSet(viewsets.ModelViewSet):
@@ -117,17 +127,13 @@ class WaterWayViewSet(viewsets.ModelViewSet):
 class NaturalDocumentViewSet(DocumentViewSet):
     document = documents.NaturalDocument
     serializer_class = serializers.NaturalDocumentSerializer
-
-
-class NaturalADocumentViewSet(viewsets.ModelViewSet):
-    queryset = models.NaturalA.objects.all()
-    serializer_class = serializers.NaturalASerializer
-    pagination_class = GeoJsonPagination
+    lookup_field = "id"
 
 
 class PoisDocumentViewSet(DocumentViewSet):
     document = documents.PoisDocument
     serializer_class = serializers.PoisDocumentSerializer
+    lookup_field = "id"
     filter_backends = [
         filter_backends.GeoSpatialFilteringFilterBackend,
     ]

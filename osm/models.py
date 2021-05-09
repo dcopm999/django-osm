@@ -18,6 +18,9 @@ class World(models.Model):
     lon = models.FloatField(verbose_name=_("Lon"))
     lat = models.FloatField(verbose_name=_("Lat"))
     geom = models.MultiPolygonField(verbose_name=_("Geom"))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     @staticmethod
     def mapping():
@@ -57,7 +60,10 @@ class Building(models.Model):
     type = models.CharField(
         max_length=20, null=True, blank=True, verbose_name=_("Object Type")
     )
-    geom = models.MultiPolygonField()
+    geom = models.PolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -70,10 +76,11 @@ class Building(models.Model):
             "fclass": "fclass",
             "name": "name",
             "type": "type",
-            "geom": "MULTIPOLYGON",
+            "geom": "POLYGON",
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Building")
         verbose_name_plural = _("Buildings")
         app_label = "osm"
@@ -89,6 +96,9 @@ class Landuse(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -104,6 +114,7 @@ class Landuse(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Landuse")
         verbose_name_plural = _("Landuses")
         app_label = "osm"
@@ -118,7 +129,10 @@ class Natural(models.Model):
     name = models.CharField(
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
-    geom = models.MultiPointField()
+    geom = models.PointField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -130,10 +144,11 @@ class Natural(models.Model):
             "code": "code",
             "fclass": "fclass",
             "name": "name",
-            "geom": "MULTIPOINT",
+            "geom": "POINT",
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Natural")
         verbose_name_plural = _("Naturals")
         app_label = "osm"
@@ -149,6 +164,9 @@ class NaturalA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -164,6 +182,7 @@ class NaturalA(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Natural A")
         verbose_name_plural = _("Naturals A")
         app_label = "osm"
@@ -180,6 +199,9 @@ class Place(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPointField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -196,6 +218,7 @@ class Place(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Place")
         verbose_name_plural = _("Places")
         app_label = "osm"
@@ -212,6 +235,9 @@ class PlaceA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -228,6 +254,7 @@ class PlaceA(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Place A")
         verbose_name_plural = _("Places A")
         app_label = "osm"
@@ -243,6 +270,9 @@ class Pofw(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPointField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -258,6 +288,7 @@ class Pofw(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Pofw")
         verbose_name_plural = _("Pofws")
         app_label = "osm"
@@ -273,6 +304,9 @@ class PofwA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -288,6 +322,7 @@ class PofwA(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Pofw A")
         verbose_name_plural = _("Pofws A")
         app_label = "osm"
@@ -303,6 +338,9 @@ class Pois(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.PointField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -318,6 +356,7 @@ class Pois(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Pois")
         verbose_name_plural = _("Poises")
         app_label = "osm"
@@ -333,6 +372,9 @@ class PoisA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -348,6 +390,7 @@ class PoisA(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Pois A")
         verbose_name_plural = _("Poises A")
         app_label = "osm"
@@ -366,6 +409,9 @@ class RailWay(models.Model):
     bridge = models.CharField(max_length=1, verbose_name=_("Bridge"))
     tunnel = models.CharField(max_length=1, verbose_name=_("Tunnel"))
     geom = models.MultiLineStringField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -384,6 +430,7 @@ class RailWay(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("RailWay")
         verbose_name_plural = _("RailWays")
         app_label = "osm"
@@ -405,6 +452,9 @@ class Road(models.Model):
     bridge = models.CharField(max_length=1, verbose_name=_("Bridge"))
     tunnel = models.CharField(max_length=1, verbose_name=_("Tunnel"))
     geom = models.MultiLineStringField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -426,6 +476,7 @@ class Road(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Road")
         verbose_name_plural = _("Roads")
         app_label = "osm"
@@ -441,6 +492,9 @@ class Traffic(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiPointField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -456,6 +510,7 @@ class Traffic(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Traffic")
         verbose_name_plural = _("Traffics")
         app_label = "osm"
@@ -471,6 +526,9 @@ class TrafficA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -486,6 +544,7 @@ class TrafficA(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Traffic A")
         verbose_name_plural = _("Traffics A")
         app_label = "osm"
@@ -501,6 +560,9 @@ class Transport(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiPointField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -516,6 +578,7 @@ class Transport(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Transport")
         verbose_name_plural = _("Transports")
         app_label = "osm"
@@ -531,6 +594,9 @@ class TransportA(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -546,6 +612,7 @@ class TransportA(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Transport A")
         verbose_name_plural = _("Transports A")
         app_label = "osm"
@@ -561,6 +628,9 @@ class Water(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiPolygonField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -576,6 +646,7 @@ class Water(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Water")
         verbose_name_plural = _("Waters")
         app_label = "osm"
@@ -592,6 +663,9 @@ class WaterWay(models.Model):
         max_length=100, null=True, blank=True, verbose_name=_("Object name")
     )
     geom = models.MultiLineStringField()
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+    deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
         return self.osm_id
@@ -608,6 +682,18 @@ class WaterWay(models.Model):
         }
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = _("Water Way")
         verbose_name_plural = _("WaterWays")
         app_label = "osm"
+
+
+class ShapeFile(models.Model):
+    url = models.URLField(verbose_name=_("URL"))
+    filename = models.FileField(upload_to="gdal", verbose_name=_("File name"))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
+
+    class Meta:
+        verbose_name = _("Shape file")
+        verbose_name_plural = _("Shape files")

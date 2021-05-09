@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     help = "OSM import"
-    GDAL_DIR = os.path.join(settings.STATIC_ROOT, "gdal")
+    GDAL_DIR = os.path.join(settings.MEDIA_ROOT, "gdal")
     URL_UZBEKISTAN = "https://download.geofabrik.de/asia/uzbekistan-latest-free.shp.zip"
 
     def add_arguments(self, parser):

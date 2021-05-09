@@ -7,7 +7,7 @@ from invoke import task
 def open_browser(path):
     try:
         from urllib import pathname2url
-    except:
+    except Exception:
         from urllib.request import pathname2url
     webbrowser.open("file://" + pathname2url(os.path.abspath(path)))
 
@@ -52,8 +52,8 @@ def docs(c):
     c.run("rm -f docs/modules.rst")
     c.run("sphinx-apidoc -o docs/ osm")
 
-    c.run("sphinx-build -E -b html docs docs/_build")
-    open_browser(path='docs/_build/html/index.html')
+    c.run("sphinx-build -E -b html docs docs/_build/html/")
+    open_browser(path="docs/_build/html/index.html")
 
 
 @task
@@ -89,21 +89,26 @@ def lint(c):
     c.run("flake8 django-osm tests")
 
 
-@task(help={'bumpsize': 'Bump either for a "feature" or "breaking" change'})
-def release(c, bumpsize=''):
+@task(help={"bumpsize": 'Bump either for a "feature" or "breaking" change'})
+def release(c, bumpsize=""):
     """
     Package and upload a release
     """
     clean(c)
     if bumpsize:
-        bumpsize = '--' + bumpsize
+        bumpsize = "--" + bumpsize
 
     c.run("bumpversion {bump} --no-input".format(bump=bumpsize))
 
     import django_osm
+
     c.run("python setup.py sdist bdist_wheel")
     c.run("twine upload dist/*")
 
-    c.run('git tag -a {version} -m "New version: {version}"'.format(version=django_osm.__version__))
+    c.run(
+        'git tag -a {version} -m "New version: {version}"'.format(
+            version=django_osm.__version__
+        )
+    )
     c.run("git push --tags")
     c.run("git push origin master")

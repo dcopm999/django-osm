@@ -9,3 +9,4 @@ celery
 redis
 django-celery-beat
 django-environ
+django-filter
