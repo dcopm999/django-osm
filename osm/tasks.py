@@ -28,7 +28,7 @@ def osm_import(self, osm_model, osm_filename, verbose=True):
 def osm_world_import(self, verbose=True):
     osm_model = models.World
     osm_filename = os.path.join(
-        settings.MEDIA_ROOT, "gdal", "world", "TM_WORLD_BORDERS-0.3.shp"
+        settings.STATIC_ROOT, "gdal", "world", "TM_WORLD_BORDERS-0.3.shp"
     )
     lm = LayerMapping(
         osm_model,

@@ -30,7 +30,7 @@ class Command(BaseCommand):
         with zipfile.ZipFile(os.path.join(osm_dir, file_name)) as zip_file:
             zip_file.extractall(osm_dir)
 
-        tasks.world_osm_import.delay()
+        tasks.osm_world_import.delay()
 
     def downloader(self, url, path):
         self.stdout.write(f"Downloading file: {self.URL_WORLD}")
