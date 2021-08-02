@@ -25,10 +25,10 @@ def osm_import(self, osm_model, osm_filename, verbose=True):
 
 
 @shared_task(bind=True, ignore_results=True)
-def osm_world_import(self, verbose=True):
-    osm_model = models.World
+def osm_country_import(self, verbose=True):
+    osm_model = models.Country
     osm_filename = os.path.join(
-        settings.STATIC_ROOT, "gdal", "world", "TM_WORLD_BORDERS-0.3.shp"
+        settings.STATIC_ROOT, "gdal", "countries", "TM_WORLD_BORDERS-0.3.shp"
     )
     lm = LayerMapping(
         osm_model,

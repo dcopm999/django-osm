@@ -12,9 +12,10 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    help = "OSM import"
-    GDAL_DIR = os.path.join(settings.MEDIA_ROOT, "gdal")
+    help = "Import OSM poligons"
+    GDAL_DIR = os.path.join(settings.STATIC_ROOT, "gdal")
     URL_UZBEKISTAN = "https://download.geofabrik.de/asia/uzbekistan-latest-free.shp.zip"
+    OSM_DIR = os.path.join(GDAL_DIR, "osm")
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -23,70 +24,79 @@ class Command(BaseCommand):
             default=False,
             help="Download and loading from OSM Server for Tashkent city",
         )
+        parser.add_argument(
+            "--URL",
+            action="store_true",
+            default=False,
+            help="Download and loading from URL",
+        )
 
     def handle(self, *args, **options):
-        if not os.path.isdir(self.GDAL_DIR):
-            os.mkdir(self.GDAL_DIR)
+        if not os.path.isdir(self.OSM_DIR):
+            os.makedirs(self.OSM_DIR)
         if options["Uzbekistan"]:
-            self.load_uzbekistan()
+            self.load_osm(self.URL_UZBEKISTAN)
+        else:
+            self.load_osm(options["URL"])
 
-    def load_uzbekistan(self):
-        osm_dir = os.path.join(self.GDAL_DIR, "Uzbekistan")
+    def load_osm(self, url: str):
         file_name = self.URL_UZBEKISTAN.split("/")[-1]
-        if not os.path.isdir(osm_dir):
-            os.mkdir(osm_dir)
-        self.downloader(self.URL_UZBEKISTAN, osm_dir)
-        with zipfile.ZipFile(os.path.join(osm_dir, file_name)) as zip_file:
-            zip_file.extractall(osm_dir)
+        self.downloader(self.URL_UZBEKISTAN, self.OSM_DIR)
+        with zipfile.ZipFile(os.path.join(self.OSM_DIR, file_name)) as zip_file:
+            zip_file.extractall(self.OSM_DIR)
         tasks.osm_import.delay(
-            "Building", os.path.join(osm_dir, "gis_osm_buildings_a_free_1.shp")
+            "Building", os.path.join(self.OSM_DIR, "gis_osm_buildings_a_free_1.shp")
         )
         tasks.osm_import.delay(
-            "Landuse", os.path.join(osm_dir, "gis_osm_landuse_a_free_1.shp")
+            "Landuse", os.path.join(self.OSM_DIR, "gis_osm_landuse_a_free_1.shp")
         )
         tasks.osm_import.delay(
-            "Natural", os.path.join(osm_dir, "gis_osm_natural_free_1.shp")
+            "Natural", os.path.join(self.OSM_DIR, "gis_osm_natural_free_1.shp")
         )
         tasks.osm_import.delay(
-            "NaturalA", os.path.join(osm_dir, "gis_osm_natural_a_free_1.shp")
+            "NaturalA", os.path.join(self.OSM_DIR, "gis_osm_natural_a_free_1.shp")
         )
         tasks.osm_import.delay(
-            "Place", os.path.join(osm_dir, "gis_osm_places_free_1.shp")
+            "Place", os.path.join(self.OSM_DIR, "gis_osm_places_free_1.shp")
         )
         tasks.osm_import.delay(
-            "PlaceA", os.path.join(osm_dir, "gis_osm_places_a_free_1.shp")
-        )
-        tasks.osm_import.delay("Pofw", os.path.join(osm_dir, "gis_osm_pofw_free_1.shp"))
-        tasks.osm_import.delay(
-            "PofwA", os.path.join(osm_dir, "gis_osm_pofw_a_free_1.shp")
-        )
-        tasks.osm_import.delay("Pois", os.path.join(osm_dir, "gis_osm_pois_free_1.shp"))
-        tasks.osm_import.delay(
-            "PoisA", os.path.join(osm_dir, "gis_osm_pois_a_free_1.shp")
+            "PlaceA", os.path.join(self.OSM_DIR, "gis_osm_places_a_free_1.shp")
         )
         tasks.osm_import.delay(
-            "RailWay", os.path.join(osm_dir, "gis_osm_railways_free_1.shp")
+            "Pofw", os.path.join(self.OSM_DIR, "gis_osm_pofw_free_1.shp")
         )
         tasks.osm_import.delay(
-            "Road", os.path.join(osm_dir, "gis_osm_roads_free_1.shp")
+            "PofwA", os.path.join(self.OSM_DIR, "gis_osm_pofw_a_free_1.shp")
         )
         tasks.osm_import.delay(
-            "Traffic", os.path.join(osm_dir, "gis_osm_traffic_free_1.shp")
+            "Pois", os.path.join(self.OSM_DIR, "gis_osm_pois_free_1.shp")
         )
         tasks.osm_import.delay(
-            "TrafficA", os.path.join(osm_dir, "gis_osm_traffic_a_free_1.shp")
+            "PoisA", os.path.join(self.OSM_DIR, "gis_osm_pois_a_free_1.shp")
         )
         tasks.osm_import.delay(
-            "Transport", os.path.join(osm_dir, "gis_osm_transport_free_1.shp")
+            "RailWay", os.path.join(self.OSM_DIR, "gis_osm_railways_free_1.shp")
         )
         tasks.osm_import.delay(
-            "TransportA", os.path.join(osm_dir, "gis_osm_transport_a_free_1.shp")
+            "Road", os.path.join(self.OSM_DIR, "gis_osm_roads_free_1.shp")
         )
         tasks.osm_import.delay(
-            "Water", os.path.join(osm_dir, "gis_osm_water_a_free_1.shp")
+            "Traffic", os.path.join(self.OSM_DIR, "gis_osm_traffic_free_1.shp")
         )
         tasks.osm_import.delay(
-            "WaterWay", os.path.join(osm_dir, "gis_osm_waterways_free_1.shp")
+            "TrafficA", os.path.join(self.OSM_DIR, "gis_osm_traffic_a_free_1.shp")
+        )
+        tasks.osm_import.delay(
+            "Transport", os.path.join(self.OSM_DIR, "gis_osm_transport_free_1.shp")
+        )
+        tasks.osm_import.delay(
+            "TransportA", os.path.join(self.OSM_DIR, "gis_osm_transport_a_free_1.shp")
+        )
+        tasks.osm_import.delay(
+            "Water", os.path.join(self.OSM_DIR, "gis_osm_water_a_free_1.shp")
+        )
+        tasks.osm_import.delay(
+            "WaterWay", os.path.join(self.OSM_DIR, "gis_osm_waterways_free_1.shp")
         )
 
     def downloader(self, url, path):
