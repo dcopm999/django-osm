@@ -1,141 +1,140 @@
-# from rest_framework import serializers
 from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
 from osm import documents, models
 
 
-class WorldSerializer(GeoFeatureModelSerializer):
+class CountrySerializer(GeoFeatureModelSerializer):
     class Meta:
-        model = models.World
-        geo_field = "geom"
+        model = models.Country
         fields = "__all__"
+        geo_field = "geom"
 
 
 class BuildingSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Building
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class LanduseSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Landuse
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class NaturalSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Natural
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class NaturalASerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.NaturalA
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class PlaceSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Place
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class PlaceASerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.PlaceA
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class PofwSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Pofw
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class PofwASerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.PofwA
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class PoisSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Pois
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class PoisASerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.PoisA
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class RailWaySerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.RailWay
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class RoadSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Road
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class TrafficSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Traffic
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class TrafficASerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.TrafficA
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class TransportSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Transport
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class TransportASerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.TransportA
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class WaterWaySerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.WaterWay
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class WaterSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = models.Water
-        geo_field = "geom"
         fields = "__all__"
+        geo_field = "geom"
 
 
 class NaturalDocumentSerializer(DocumentSerializer):

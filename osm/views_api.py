@@ -1,136 +1,172 @@
 from django_elasticsearch_dsl_drf import constants, filter_backends
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets
+from rest_framework import generics
 from rest_framework_gis.pagination import GeoJsonPagination
 
-from osm import documents, models, serializers
-from osm.filters import ContainsPointFilter
+from osm import documents, filters, models, serializers
 
 
-class WorldViewSet(viewsets.ModelViewSet):
-    queryset = models.World.objects.all()
-    serializer_class = serializers.WorldSerializer
+class CountryListAPIView(generics.ListAPIView):
+    queryset = models.Country.objects.filter(deleted=False)
+    serializer_class = serializers.CountrySerializer
+    filter_backends = [filters.DistPointMeterFilter]
     pagination_class = GeoJsonPagination
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = ContainsPointFilter
 
 
-class BuildingViewSet(viewsets.ModelViewSet):
-    queryset = models.Building.objects.all()
+class BuildingListAPIView(generics.ListAPIView):
+    queryset = models.Building.objects.filter(deleted=False)
     serializer_class = serializers.BuildingSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class LanduseViewSet(viewsets.ModelViewSet):
-    queryset = models.Landuse.objects.all()
+class LanduseListAPIView(generics.ListAPIView):
+    queryset = models.Landuse.objects.filter(deleted=False)
     serializer_class = serializers.LanduseSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class NaturalViewSet(viewsets.ModelViewSet):
-    queryset = models.Natural.objects.all()
+class NaturalListAPIView(generics.ListAPIView):
+    queryset = models.Natural.objects.filter(deleted=False)
     serializer_class = serializers.NaturalSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class NaturalAViewSet(viewsets.ModelViewSet):
-    queryset = models.NaturalA.objects.all()
+class NaturalAListAPIView(generics.ListAPIView):
+    queryset = models.NaturalA.objects.filter(deleted=False)
     serializer_class = serializers.NaturalASerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class PlaceViewSet(viewsets.ModelViewSet):
-    queryset = models.Place.objects.all()
+class PlaceListAPIView(generics.ListAPIView):
+    queryset = models.Place.objects.filter(deleted=False)
     serializer_class = serializers.PlaceSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class PlaceAViewSet(viewsets.ModelViewSet):
-    queryset = models.PlaceA.objects.all()
+class PlaceAListAPIView(generics.ListAPIView):
+    queryset = models.PlaceA.objects.filter(deleted=False)
     serializer_class = serializers.PlaceASerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class PofwViewSet(viewsets.ModelViewSet):
-    queryset = models.Pofw.objects.all()
+class PofwListAPIView(generics.ListAPIView):
+    queryset = models.Pofw.objects.filter(deleted=False)
     serializer_class = serializers.PofwSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class PofwAViewSet(viewsets.ModelViewSet):
-    queryset = models.PofwA.objects.all()
+class PofwAListAPIView(generics.ListAPIView):
+    queryset = models.PofwA.objects.filter(deleted=False)
     serializer_class = serializers.PofwASerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class PoisViewSet(viewsets.ModelViewSet):
-    queryset = models.Pois.objects.all()
+class PoisListAPIView(generics.ListAPIView):
+    queryset = models.Pois.objects.filter(deleted=False)
     serializer_class = serializers.PoisSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class PoisAViewSet(viewsets.ModelViewSet):
-    queryset = models.PoisA.objects.all()
+class PoisAListAPIView(generics.ListAPIView):
+    queryset = models.PoisA.objects.filter(deleted=False)
     serializer_class = serializers.PoisASerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class RailWayViewSet(viewsets.ModelViewSet):
-    queryset = models.RailWay.objects.all()
+class RailWayListAPIView(generics.ListAPIView):
+    queryset = models.RailWay.objects.filter(deleted=False)
     serializer_class = serializers.RailWaySerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class RoadViewSet(viewsets.ModelViewSet):
-    queryset = models.Road.objects.all()
+class RoadListAPIView(generics.ListAPIView):
+    queryset = models.Road.objects.filter(deleted=False)
     serializer_class = serializers.RoadSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class TrafficViewSet(viewsets.ModelViewSet):
-    queryset = models.Traffic.objects.all()
+class TrafficListAPIView(generics.ListAPIView):
+    queryset = models.Traffic.objects.filter(deleted=False)
     serializer_class = serializers.TrafficSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class TrafficAViewSet(viewsets.ModelViewSet):
-    queryset = models.TrafficA.objects.all()
+class TrafficAListAPIView(generics.ListAPIView):
+    queryset = models.TrafficA.objects.filter(deleted=False)
     serializer_class = serializers.TrafficASerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class TransportViewSet(viewsets.ModelViewSet):
-    queryset = models.Transport.objects.all()
+class TransportListAPIView(generics.ListAPIView):
+    queryset = models.Transport.objects.filter(deleted=False)
     serializer_class = serializers.TransportSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class TransportAViewSet(viewsets.ModelViewSet):
-    queryset = models.TransportA.objects.all()
+class TransportAListAPIView(generics.ListAPIView):
+    queryset = models.TransportA.objects.filter(deleted=False)
     serializer_class = serializers.TrafficASerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class WaterViewSet(viewsets.ModelViewSet):
-    queryset = models.Water.objects.all()
+class WaterListAPIView(generics.ListAPIView):
+    queryset = models.Water.objects.filter(deleted=False)
     serializer_class = serializers.WaterSerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class WaterWayViewSet(viewsets.ModelViewSet):
-    queryset = models.WaterWay.objects.all()
+class WaterWayListAPIView(generics.ListAPIView):
+    queryset = models.WaterWay.objects.filter(deleted=False)
     serializer_class = serializers.WaterWaySerializer
+    filter_backends = [filters.DistPointMeterFilter, DjangoFilterBackend]
+    filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
 
 
-class NaturalDocumentViewSet(DocumentViewSet):
+class NaturalDocumentListAPIView(DocumentViewSet):
     document = documents.NaturalDocument
     serializer_class = serializers.NaturalDocumentSerializer
     lookup_field = "id"
+    filter_backends = [filters.DistPointMeterFilter]
+    pagination_class = GeoJsonPagination
 
 
-class PoisDocumentViewSet(DocumentViewSet):
+class PoisDocumentListAPIView(DocumentViewSet):
     document = documents.PoisDocument
     serializer_class = serializers.PoisDocumentSerializer
     lookup_field = "id"

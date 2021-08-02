@@ -4,8 +4,8 @@ from django.contrib.gis import admin
 from osm import models
 
 
-@admin.register(models.World)
-class WorldAdmin(admin.OSMGeoAdmin):
+@admin.register(models.Country)
+class CountryAdmin(admin.OSMGeoAdmin):
     list_display = [
         "name",
         "fips",
@@ -35,6 +35,7 @@ class BuildingAdmin(admin.OSMGeoAdmin):
 @admin.register(models.Landuse)
 class LanduseAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -43,6 +44,7 @@ class LanduseAdmin(admin.OSMGeoAdmin):
 @admin.register(models.Natural)
 class NaturalAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -51,6 +53,7 @@ class NaturalAdmin(admin.OSMGeoAdmin):
 @admin.register(models.NaturalA)
 class NaturalA_Admin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -59,8 +62,8 @@ class NaturalA_Admin(admin.OSMGeoAdmin):
 @admin.register(models.Place)
 class PlaceAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
-    search_fields = ["name", "osm_id"]
     list_filter = ["fclass"]
+    search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
 
@@ -68,6 +71,7 @@ class PlaceAdmin(admin.OSMGeoAdmin):
 @admin.register(models.PlaceA)
 class PlaceA_Admin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     list_filter = ["fclass"]
     date_hierarchy = "updated"
@@ -77,6 +81,7 @@ class PlaceA_Admin(admin.OSMGeoAdmin):
 @admin.register(models.Pofw)
 class PofwAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -85,6 +90,7 @@ class PofwAdmin(admin.OSMGeoAdmin):
 @admin.register(models.PofwA)
 class PofwA_Admin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -93,6 +99,7 @@ class PofwA_Admin(admin.OSMGeoAdmin):
 @admin.register(models.Pois)
 class PoisAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -101,6 +108,7 @@ class PoisAdmin(admin.OSMGeoAdmin):
 @admin.register(models.PoisA)
 class PoisA_Admin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -109,6 +117,7 @@ class PoisA_Admin(admin.OSMGeoAdmin):
 @admin.register(models.RailWay)
 class RailWayAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -117,6 +126,7 @@ class RailWayAdmin(admin.OSMGeoAdmin):
 @admin.register(models.Road)
 class RoadAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -125,6 +135,7 @@ class RoadAdmin(admin.OSMGeoAdmin):
 @admin.register(models.Traffic)
 class TrafficAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -133,6 +144,7 @@ class TrafficAdmin(admin.OSMGeoAdmin):
 @admin.register(models.TrafficA)
 class TrafficA_Admin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -141,6 +153,7 @@ class TrafficA_Admin(admin.OSMGeoAdmin):
 @admin.register(models.Transport)
 class TransportAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -149,6 +162,7 @@ class TransportAdmin(admin.OSMGeoAdmin):
 @admin.register(models.TransportA)
 class TransportA_Admin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -157,6 +171,7 @@ class TransportA_Admin(admin.OSMGeoAdmin):
 @admin.register(models.Water)
 class WaterAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
@@ -165,12 +180,7 @@ class WaterAdmin(admin.OSMGeoAdmin):
 @admin.register(models.WaterWay)
 class WaterWayAdmin(admin.OSMGeoAdmin):
     list_display = ["osm_id", "name", "code", "fclass", "created", "updated", "deleted"]
+    list_filter = ["fclass"]
     search_fields = ["name", "osm_id"]
     date_hierarchy = "updated"
     list_editable = ["deleted"]
-
-
-@admin.register(models.ShapeFile)
-class ShapeFileAdmin(admin.ModelAdmin):
-    list_display = ["filename", "url", "created", "updated"]
-    date_hirarchy = "updated"

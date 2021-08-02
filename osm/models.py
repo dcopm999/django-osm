@@ -3,7 +3,7 @@ from django.contrib.gis.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class World(models.Model):
+class Country(models.Model):
     fips = models.CharField(max_length=2, blank=True, null=True, verbose_name=_("Fips"))
     iso2 = models.CharField(max_length=2, verbose_name=_("iso2"))
     iso3 = models.CharField(max_length=3, verbose_name=_("iso3"))
@@ -40,11 +40,11 @@ class World(models.Model):
         }
 
     def __str__(self):
-        return self.name
+        return f"Country({self.name})"
 
     class Meta:
-        verbose_name = _("World")
-        verbose_name_plural = _("World")
+        verbose_name = _("Country")
+        verbose_name_plural = _("Countries")
 
 
 class Building(models.Model):
@@ -66,7 +66,7 @@ class Building(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Building({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -101,7 +101,7 @@ class Landuse(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Landuse({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -135,7 +135,7 @@ class Natural(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Natural({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -169,7 +169,7 @@ class NaturalA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"NaturalA({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -204,7 +204,7 @@ class Place(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Place: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -240,7 +240,7 @@ class PlaceA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"PlaceA: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -275,7 +275,7 @@ class Pofw(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Pofw: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -290,7 +290,7 @@ class Pofw(models.Model):
     class Meta:
         ordering = ["-id"]
         verbose_name = _("Pofw")
-        verbose_name_plural = _("Pofws")
+        verbose_name_plural = _("Pofw")
         app_label = "osm"
 
 
@@ -309,7 +309,7 @@ class PofwA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Pofw A: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -324,7 +324,7 @@ class PofwA(models.Model):
     class Meta:
         ordering = ["-id"]
         verbose_name = _("Pofw A")
-        verbose_name_plural = _("Pofws A")
+        verbose_name_plural = _("Pofw A")
         app_label = "osm"
 
 
@@ -343,7 +343,7 @@ class Pois(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Pois: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -377,7 +377,7 @@ class PoisA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Pois A: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -414,7 +414,7 @@ class RailWay(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"RailWay: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -457,7 +457,7 @@ class Road(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Road: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -497,7 +497,7 @@ class Traffic(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Traffic: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -531,7 +531,7 @@ class TrafficA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Traffic A: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -565,7 +565,7 @@ class Transport(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Transport: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -599,7 +599,7 @@ class TransportA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Transport A: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -633,7 +633,7 @@ class Water(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"Water: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -668,7 +668,7 @@ class WaterWay(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return self.osm_id
+        return f"WaterWay: {self.osm_id}"
 
     @staticmethod
     def mapping():
@@ -686,14 +686,3 @@ class WaterWay(models.Model):
         verbose_name = _("Water Way")
         verbose_name_plural = _("WaterWays")
         app_label = "osm"
-
-
-class ShapeFile(models.Model):
-    url = models.URLField(verbose_name=_("URL"))
-    filename = models.FileField(upload_to="gdal", verbose_name=_("File name"))
-    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
-    updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
-
-    class Meta:
-        verbose_name = _("Shape file")
-        verbose_name_plural = _("Shape files")
