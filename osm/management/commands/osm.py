@@ -26,7 +26,8 @@ class Command(BaseCommand):
         )
         parser.add_argument(
             "--URL",
-            action="store_true",
+            action="store",
+            type=str,
             default=False,
             help="Download and loading from URL",
         )
@@ -40,8 +41,8 @@ class Command(BaseCommand):
             self.load_osm(options["URL"])
 
     def load_osm(self, url: str):
-        file_name = self.URL_UZBEKISTAN.split("/")[-1]
-        self.downloader(self.URL_UZBEKISTAN, self.OSM_DIR)
+        file_name = url.split("/")[-1]
+        self.downloader(url, self.OSM_DIR)
         with zipfile.ZipFile(os.path.join(self.OSM_DIR, file_name)) as zip_file:
             zip_file.extractall(self.OSM_DIR)
         tasks.osm_import.delay(
@@ -99,7 +100,10 @@ class Command(BaseCommand):
             "WaterWay", os.path.join(self.OSM_DIR, "gis_osm_waterways_free_1.shp")
         )
 
-    def downloader(self, url, path):
-        self.stdout.write(f"Downloading file: {self.URL_UZBEKISTAN}")
+    def downloader(self, url: str, path: str) -> None:
+        self.stdout.write(f"Downloading file: {url}")
         wget.download(url, path)
         self.stdout.write(self.style.SUCCESS("\tSuccess"))
+
+    def bunzip2(self, file: str) -> None:
+        pass
