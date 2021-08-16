@@ -2,4 +2,4 @@ invoke
 twine
 wheel
 zest.releaser
-
+pre-commit>=2.10.1

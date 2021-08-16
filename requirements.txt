@@ -1,11 +1,12 @@
 
 # Additional requirements go here
-Django>=3.0.11<4
-djangorestframework==3.12.2
-djangorestframework-gis==0.16
-django-elasticsearch-dsl-drf==0.20.9 
-psycopg2>=2.8.6
-wget>=3.2
-celery>=5.0.5
-redis>=3.5.3
-django-celery-beat>=2.1.0
+djangorestframework
+djangorestframework-gis
+django-elasticsearch-dsl-drf
+psycopg2
+wget
+celery
+redis
+django-celery-beat
+django-environ
+django-filter

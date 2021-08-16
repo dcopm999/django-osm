@@ -1,8 +1,10 @@
+# Additional test requirements go here
 coverage==4.4.1
 mock>=1.0.1
 flake8>=2.1.0
 tox>=1.7.0
 codecov>=2.0.0
-
-
-# Additional test requirements go here
+django-environ>=0.4.5
+pylint>=2.6.0
+pylint-django>=2.4.2
+pylint-celery>=0.3

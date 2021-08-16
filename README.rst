@@ -5,8 +5,8 @@ django-osm
 .. image:: https://badge.fury.io/py/django-osm.svg
     :target: https://badge.fury.io/py/django-osm
 
-.. image:: https://travis-ci.org/dcopm999/django-osm.svg?branch=master
-    :target: https://travis-ci.org/dcopm999/django-osm
+.. image:: https://travis-ci.com/dcopm999/django-osm.svg?branch=master
+    :target: https://travis-ci.com/dcopm999/django-osm
 
 .. image:: https://codecov.io/gh/dcopm999/django-osm/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/dcopm999/django-osm
@@ -47,27 +47,72 @@ Add it to your `INSTALLED_APPS`:
 	},
     }
 
+    DATABASE_ROUTERS = [
+        ...
+        'osm.route_db.Default'
+    ]
+
     DATABASES = {
-        'default': {
-	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-	'NAME': 'geodjango',
-	'USER': 'geo',
+        ...
+        'osm': {
+	    'ENGINE': 'django.contrib.gis.db.backends.postgis',
+	    'HOST': 'localhost',
+	    'NAME': 'geodjango',
+	    'USER': 'geo',
+	    'PASSWORD': 'geo',
 	},
     }
+    OSM_REPLICS = ['osm']
+
+
+If there is OSM database replication, then add the connection parameters to us in the list of databases:
+
+.. code-block:: python
+
+       DATABASES = {
+           ...
+	   'osm_replica1': {
+	       'ENGINE': 'django.contrib.gis.db.backends.postgis',
+	       'HOST': 'localhost',
+	       'NAME': 'geodjango',
+	       'USER': 'geo',
+	       'PASSWORD': 'geo',
+	       },
+
+       }
+
+And complete the list of replicas OSM_REPLICS:
+
+.. code-block:: python
+
+   OSM_REPLICS = ['osm', 'osm_replica1']
 
 
 Add django-osm's URL patterns:
 
 .. code-block:: python
 
-    from osm import urls as osm_urls
-
-
     urlpatterns = [
         ...
-        url(r'^', include(osm_urls)),
+        path('osm/', include('osm.urls', namespace='osm')),
         ...
     ]
+
+
+Add DRF settings:
+
+.. code-block:: python
+
+    REST_FRAMEWORK = {
+	"DEFAULT_AUTHENTICATION_CLASSES": (
+	    "rest_framework.authentication.SessionAuthentication",
+	    "rest_framework.authentication.TokenAuthentication",
+	),
+	"DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+	'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+	'PAGE_SIZE': 25
+   }
+
 
 Features
 --------

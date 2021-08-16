@@ -8,47 +8,49 @@ from osm import models
 
 @registry.register_document
 class NaturalDocument(Document):
-    geom = fields.GeoPointField(attr='geom')
+    geom = fields.GeoPointField(attr="geom")
 
     def prepare_geom(self, instance: models.Natural) -> Dict:
-        return {
-            'lon': instance.geom.x,
-            'lat': instance.geom.y
-        }
+        return instance.geom.coords
+        # return {
+        #    'lon': instance.geom.x,
+        #    'lat': instance.geom.y
+        # }
 
     class Django:
         model = models.Natural
         fields = [
-            'id',
-            'osm_id',
-            'code',
-            'fclass',
-            'name',
+            "id",
+            "osm_id",
+            "code",
+            "fclass",
+            "name",
         ]
 
     class Index:
-        name = 'natural'
+        name = "natural"
 
 
 @registry.register_document
 class PoisDocument(Document):
-    geom = fields.GeoPointField(attr='geom')
+    geom = fields.GeoPointField(attr="geom")
 
     def prepare_geom(self, instance: models.Natural) -> Dict:
-        return {
-            'lon': instance.geom.x,
-            'lat': instance.geom.y
-        }
+        return instance.geom.coords
+        # return {
+        #    'lon': instance.geom.x,
+        #    'lat': instance.geom.y
+        # }
 
     class Django:
         model = models.Pois
         fields = [
-            'id',
-            'osm_id',
-            'code',
-            'fclass',
-            'name',
+            "id",
+            "osm_id",
+            "code",
+            "fclass",
+            "name",
         ]
 
     class Index:
-        name = 'pois'
+        name = "pois"
