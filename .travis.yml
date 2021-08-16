@@ -1,3 +1,4 @@
+---
 # Config file for automatic testing at travis-ci.org
 
 language: python
@@ -7,9 +8,17 @@ python:
 
 env:
   - TOX_ENV=py37-django-22
-  - TOX_ENV=py37-django-30
+  - TOX_ENV=py37-django-20
   - TOX_ENV=py37-django-31
   - TOX_ENV=py37-django-32
+  - TOX_ENV=py38-django-22
+  - TOX_ENV=py38-django-20
+  - TOX_ENV=py38-django-31
+  - TOX_ENV=py38-django-32
+  - TOX_ENV=py39-django-22
+  - TOX_ENV=py39-django-20
+  - TOX_ENV=py39-django-31
+  - TOX_ENV=py39-django-32
 
 matrix:
   fast_finish: true
@@ -18,7 +27,8 @@ before_install:
   - sudo add-apt-repository --yes ppa:ubuntugis/ppa
   - sudo apt-get --quiet update
   - sudo apt-get install --yes libgdal-dev gdal-bin
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
+# command to install dependencies, e.g.
+# pip install -r requirements.txt --use-mirrors
 install: pip install -r requirements_test.txt
 
 # command to run tests using coverage, e.g. python setup.py test
