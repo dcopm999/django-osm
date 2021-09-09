@@ -5,8 +5,8 @@ django-osm
 .. image:: https://badge.fury.io/py/django-osm.svg
     :target: https://badge.fury.io/py/django-osm
 
-.. image:: https://travis-ci.com/dcopm999/django-osm.svg?branch=master
-    :target: https://travis-ci.com/dcopm999/django-osm
+.. image:: https://app.travis-ci.com/dcopm999/django-osm.svg?branch=master
+    :target: https://app.travis-ci.com/github/dcopm999/django-osm
 
 .. image:: https://codecov.io/gh/dcopm999/django-osm/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/dcopm999/django-osm
