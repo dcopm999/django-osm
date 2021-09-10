@@ -84,7 +84,10 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     },
-    "osm": env.db("OSM_DATABASE_URL", default="postgis://master:master@localhost/osm"),
+    "osm": {
+        "ENGINE": "django.contrib.gis.db.backends.spatialite",
+        "NAME": os.path.join(BASE_DIR, "db.spatialite"),
+    },
 }
 OSM_REPLICS = ["osm"]
 # Password validation
@@ -133,7 +136,9 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 25,
 }
