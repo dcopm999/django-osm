@@ -46,7 +46,7 @@ matrix:
 before_install:
   - sudo add-apt-repository --yes ppa:ubuntugis/ppa
   - sudo apt-get --quiet update
-  - sudo apt-get install --yes libgdal-dev gdal-bin libspatialite7 libspatialite-dev
+  - sudo apt-get install --yes libgdal-dev gdal-bin libspatialite7 libspatialite-dev libsqlite3-mod-spatialite
 # command to install dependencies, e.g.
 # pip install -r requirements.txt --use-mirrors
 install: pip install -r requirements_test.txt
