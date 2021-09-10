@@ -19,14 +19,6 @@ class PointDistFilter(BaseFilterBackend):
         return queryset
 
 
-class LimitFilter(BaseFilterBackend):
-    def filter_queryset(self, request, queryset, view):
-        if "limit" in request.GET.keys():
-            limit = int(request.GET["limit"])
-            queryset = queryset[:limit]
-        return queryset
-
-
 class PointIntersectsFilter(BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         if "intersects" in request.GET.keys():
@@ -36,7 +28,7 @@ class PointIntersectsFilter(BaseFilterBackend):
         return queryset
 
 
-class PointContainsFiltter(BaseFilterBackend):
+class PointContainsFilter(BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         if "contains" in request.GET.keys():
             point = request.GET["contains"].split(",")

@@ -8,6 +8,7 @@ class URLCase(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.point = "69.279737,41.311273"
 
     def test_country_code(self):
         response = self.client.get("/api/country/")
@@ -84,3 +85,17 @@ class URLCase(TestCase):
     def test_waterway_code(self):
         response = self.client.get("/api/waterway/")
         self.assertEqual(response.status_code, 200)
+
+    def test_filters_PointDistFilter_match(self):
+        response = self.client.get(
+            "/api/country/", {"dist": "100000", "point": self.point}
+        )
+        self.assertEqual(response.data["count"], 1)
+
+    def test_filters_PointIntersectsFilter_match(self):
+        response = self.client.get("/api/country/", {"intersects": self.point})
+        self.assertEqual(response.data["count"], 1)
+
+    def test_filters_PointContainsFilter_match(self):
+        response = self.client.get("/api/country/", {"contains": self.point})
+        self.assertEqual(response.data["count"], 1)
