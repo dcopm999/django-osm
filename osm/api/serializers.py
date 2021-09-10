@@ -1,7 +1,6 @@
-from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
-from osm import documents, models
+from osm import models
 
 
 class CountrySerializer(GeoFeatureModelSerializer):
@@ -135,23 +134,3 @@ class WaterSerializer(GeoFeatureModelSerializer):
         model = models.Water
         fields = "__all__"
         geo_field = "geom"
-
-
-class NaturalDocumentSerializer(DocumentSerializer):
-    """Serializer for Natural document."""
-
-    class Meta:
-        """Meta options."""
-
-        document = documents.NaturalDocument
-        fields = "__all__"
-
-
-class PoisDocumentSerializer(DocumentSerializer):
-    """Serializer for Pois document."""
-
-    class Meta:
-        """Meta options."""
-
-        document = documents.PoisDocument
-        fields = "__all__"

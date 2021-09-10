@@ -35,17 +35,9 @@ Add it to your `INSTALLED_APPS`:
 	"django_celery_beat",
 	"rest_framework",
 	"rest_framework_gis",
-	"django_elasticsearch_dsl",
-	"django_elasticsearch_dsl_drf",
         "osm",
         ...
     )
-
-    ELASTICSEARCH_DSL = {
-    'default': {
-        'hosts': 'localhost:9200'
-	},
-    }
 
     DATABASE_ROUTERS = [
         ...
@@ -58,8 +50,6 @@ Add it to your `INSTALLED_APPS`:
 	    'ENGINE': 'django.contrib.gis.db.backends.postgis',
 	    'HOST': 'localhost',
 	    'NAME': 'geodjango',
-	    'USER': 'geo',
-	    'PASSWORD': 'geo',
 	},
     }
     OSM_REPLICS = ['osm']
@@ -75,8 +65,6 @@ If there is OSM database replication, then add the connection parameters to us i
 	       'ENGINE': 'django.contrib.gis.db.backends.postgis',
 	       'HOST': 'localhost',
 	       'NAME': 'geodjango',
-	       'USER': 'geo',
-	       'PASSWORD': 'geo',
 	       },
 
        }

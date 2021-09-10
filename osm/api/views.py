@@ -1,10 +1,9 @@
-from django_elasticsearch_dsl_drf import constants, filter_backends
-from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework_gis.pagination import GeoJsonPagination
 
-from osm import documents, filters, models, serializers
+from osm import models
+from osm.api import filters, serializers
 
 
 class CountryListAPIView(generics.ListAPIView):
@@ -250,27 +249,3 @@ class WaterWayListAPIView(generics.ListAPIView):
     ]
     filterset_fields = ("fclass",)
     pagination_class = GeoJsonPagination
-
-
-class NaturalDocumentListAPIView(DocumentViewSet):
-    document = documents.NaturalDocument
-    serializer_class = serializers.NaturalDocumentSerializer
-    lookup_field = "id"
-    filter_backends = [filters.PointDistFilter]
-    pagination_class = GeoJsonPagination
-
-
-class PoisDocumentListAPIView(DocumentViewSet):
-    document = documents.PoisDocument
-    serializer_class = serializers.PoisDocumentSerializer
-    lookup_field = "id"
-    filter_backends = [
-        filter_backends.GeoSpatialFilteringFilterBackend,
-    ]
-    geo_spatial_filter_fields = {
-        "geom": {
-            "lookups": [
-                constants.LOOKUP_FILTER_GEO_SHAPE,
-            ],
-        },
-    }

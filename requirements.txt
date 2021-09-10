@@ -1,12 +1,7 @@
 
 # Additional requirements go here
-djangorestframework
-djangorestframework-gis
-django-elasticsearch-dsl-drf
-psycopg2
-wget
-celery
-redis
-django-celery-beat
-django-environ
-django-filter
+djangorestframework==3.12.4
+djangorestframework-gis==0.17
+django-filter==2.4.0
+celery==5.1.2
+wget==3.2

@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     "django_filters",
     "rest_framework",
     "rest_framework_gis",
-    "django_elasticsearch_dsl",
-    "django_elasticsearch_dsl_drf",
     "osm",
     # if your app has other dependencies that need to be added to the site
     # they should be added here
@@ -125,11 +123,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-ELASTICSEARCH_DSL = {
-    "default": {"hosts": "localhost:9200"},
-}
-
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
