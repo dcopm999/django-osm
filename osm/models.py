@@ -204,7 +204,7 @@ class Place(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Place: {self.osm_id}"
+        return f"Place({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -240,7 +240,7 @@ class PlaceA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"PlaceA: {self.osm_id}"
+        return f"PlaceA({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -275,7 +275,7 @@ class Pofw(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Pofw: {self.osm_id}"
+        return f"Pofw({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -309,7 +309,7 @@ class PofwA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Pofw A: {self.osm_id}"
+        return f"PofwA({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -343,7 +343,7 @@ class Pois(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Pois: {self.osm_id}"
+        return f"Pois({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -377,7 +377,7 @@ class PoisA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Pois A: {self.osm_id}"
+        return f"PoisA({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -414,7 +414,7 @@ class RailWay(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"RailWay: {self.osm_id}"
+        return f"RailWay({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -457,7 +457,7 @@ class Road(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Road: {self.osm_id}"
+        return f"Road({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -497,7 +497,7 @@ class Traffic(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Traffic: {self.osm_id}"
+        return f"Traffic({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -531,7 +531,7 @@ class TrafficA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Traffic A: {self.osm_id}"
+        return f"TrafficA({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -565,7 +565,7 @@ class Transport(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Transport: {self.osm_id}"
+        return f"Transport({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -599,7 +599,7 @@ class TransportA(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Transport A: {self.osm_id}"
+        return f"TransportA({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -633,7 +633,7 @@ class Water(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"Water: {self.osm_id}"
+        return f"Water({self.osm_id})"
 
     @staticmethod
     def mapping():
@@ -668,7 +668,7 @@ class WaterWay(models.Model):
     deleted = models.BooleanField(default=False, verbose_name=_("Is deleted"))
 
     def __str__(self):
-        return f"WaterWay: {self.osm_id}"
+        return f"WaterWay({self.osm_id})"
 
     @staticmethod
     def mapping():
