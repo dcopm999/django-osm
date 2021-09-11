@@ -12,7 +12,7 @@ class CountryListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
     ]
     pagination_class = GeoJsonPagination
 
@@ -23,7 +23,7 @@ class BuildingListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -36,7 +36,7 @@ class LanduseListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -49,7 +49,7 @@ class NaturalListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -62,7 +62,7 @@ class NaturalAListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -75,7 +75,7 @@ class PlaceListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -88,7 +88,7 @@ class PlaceAListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -101,7 +101,7 @@ class PofwListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -114,7 +114,7 @@ class PofwAListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -127,7 +127,7 @@ class PoisListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -140,7 +140,7 @@ class PoisAListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -153,7 +153,7 @@ class RailWayListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -166,7 +166,7 @@ class RoadListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -179,7 +179,7 @@ class TrafficListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -192,7 +192,7 @@ class TrafficAListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -205,7 +205,7 @@ class TransportListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -218,7 +218,7 @@ class TransportAListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -231,7 +231,7 @@ class WaterListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
@@ -244,7 +244,7 @@ class WaterWayListAPIView(generics.ListAPIView):
     filter_backends = [
         filters.PointDistFilter,
         filters.PointIntersectsFilter,
-        filters.PointContainsFiltter,
+        filters.PointContainsFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = ("fclass",)
