@@ -30,7 +30,7 @@ class Default:
         many to many operations to determine if a relation should be allowed between two objects.
         """
         if obj1._meta.app_label in ["osm"] or obj2._meta.app_label == ["osm"]:
-            return False
+            return True
         return None
 
     def allow_migrate(self, db, app_label, model=None, **hints):
