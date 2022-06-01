@@ -42,7 +42,8 @@ class Command(BaseCommand):
 
     def load_osm(self, url: str):
         file_name = url.split("/")[-1]
-        self.downloader(url, self.OSM_DIR)
+        if not os.path.exists(os.path.join(self.OSM_DIR, file_name)):
+            self.downloader(url, self.OSM_DIR)
         with zipfile.ZipFile(os.path.join(self.OSM_DIR, file_name)) as zip_file:
             zip_file.extractall(self.OSM_DIR)
         tasks.osm_import.delay(

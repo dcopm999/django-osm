@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 from django.urls import include, path
 
-app_name = "tashkent"
+app_name = "osm"
 
 urlpatterns = [
-    path("api/", include("osm.api.urls", namespace="osm")),
+    path("api/", include("osm.api.urls", namespace="osm-api")),
 ]
