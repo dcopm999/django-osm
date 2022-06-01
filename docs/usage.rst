@@ -8,19 +8,36 @@ To use django-osm in a project, add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'osm.apps.OsmConfig',
+	"django.contrib.gis",
+	"django_celery_beat",
+	"rest_framework",
+	"rest_framework_gis",
+        "osm",
         ...
     )
+
+    DATABASE_ROUTERS = [
+        ...
+        'osm.route_db.Default'
+    ]
+
+    DATABASES = {
+        ...
+        'osm': {
+	    'ENGINE': 'django.contrib.gis.db.backends.postgis',
+	    'HOST': 'localhost',
+	    'NAME': 'geodjango',
+	},
+    }
+    OSM_REPLICS = ['osm']
+
 
 Add django-osm's URL patterns:
 
 .. code-block:: python
 
-    from osm import urls as osm_urls
-
-
     urlpatterns = [
         ...
-        url(r'^', include(osm_urls)),
+	path('osm/', include('osm.urls', namespace='osm')),
         ...
     ]
