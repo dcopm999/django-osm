@@ -3,7 +3,7 @@ from django.urls import path
 
 from osm.api import views
 
-app_name = "osm"
+app_name = "osm-api"
 urlpatterns = [
     path("country/", views.CountryListAPIView.as_view(), name="country-list"),
     path("building/", views.BuildingListAPIView.as_view(), name="building-list"),
